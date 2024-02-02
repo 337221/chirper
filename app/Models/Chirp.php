@@ -11,9 +11,7 @@ class Chirp extends Model
 {
     use HasFactory;
     
-    protected $fillable = [
-        'message',
-    ];
+    protected $fillable = ['message', 'parent_id'];
 
     protected $dispatchesEvents = [
         'created' => ChirpCreated::class,
@@ -22,5 +20,15 @@ class Chirp extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Chirp::class, 'parent_id');
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Chirp::class, 'parent_id');
     }
 }

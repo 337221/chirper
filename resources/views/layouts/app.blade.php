@@ -13,6 +13,11 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+    
+        @if (request()->routeIs('chirps.index'))
+            <link rel="stylesheet" href="{{ asset('css/chirps.css') }}">
+        @endif
+        
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">

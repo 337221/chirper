@@ -1,0 +1,23 @@
+/* Style for parent chirps */
+.chirp {
+    border: 1px solid #e2e8f0; /* Light gray border */
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem; /* Slightly rounded corners for aesthetics */
+}
+
+/* Style for replies */
+.reply {
+    border: 1px solid #cbd5e1; /* Slightly darker border for replies */
+    margin-left: 2rem; /* Indent replies to nest under parent chirps */
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+/* Adjustments for reply form */
+.reply-form {
+    margin-left: 2rem; /* Align form under the reply for clear association */
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}

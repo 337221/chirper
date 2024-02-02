@@ -15,9 +15,13 @@ class ChirpController extends Controller
      */
     public function index(): View
     {
-        return view('chirps.index', [
-            'chirps' => Chirp::with('user')->latest()->get(),
-        ]);
+        $chirps = Chirp::whereNull('parent_id') 
+                        ->with('user')
+                        ->with('replies')
+                        ->latest()
+                        ->get();
+    
+        return view('chirps.index', compact('chirps'));
     }
 
     /**
@@ -35,10 +39,11 @@ class ChirpController extends Controller
     {
         $validated = $request->validate([
             'message' => 'required|string|max:255',
+            'parent_id' => 'nullable|integer|exists:chirps,id'
         ]);
- 
+     
         $request->user()->chirps()->create($validated);
- 
+     
         return redirect(route('chirps.index'));
     }
 
